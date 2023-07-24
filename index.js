@@ -5,8 +5,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
-require("dotenv").config()
-// const port = 8000;
+const port = 8000;
 const cors = require("cors");
 app.use(cors());
 
@@ -16,7 +15,7 @@ app.use(passport.initialize());
 const jwt = require("jsonwebtoken");
 
 mongoose
-  .connect(process.env.DB_URI, {
+  .connect("mongodb+srv://ashwani:asdfghjkl@cluster0.5bcd96a.mongodb.net/chatappnative?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -27,10 +26,7 @@ mongoose
     console.log("Error connecting to MongoDb", err);
   });
 
-  app.get("/",(req,res)=>{
-    res.send("Running...")
-  })
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
   console.log("Server running on port 8000");
 });
 
