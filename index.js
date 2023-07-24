@@ -5,7 +5,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
-const port = 8000;
+require("dotenv").config()
+// const port = 8000;
 const cors = require("cors");
 app.use(cors());
 
@@ -15,7 +16,7 @@ app.use(passport.initialize());
 const jwt = require("jsonwebtoken");
 
 mongoose
-  .connect("mongodb+srv://ashwani:asdfghjkl@cluster0.5bcd96a.mongodb.net/chatappnative?retryWrites=true&w=majority", {
+  .connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -29,7 +30,7 @@ mongoose
   app.get("/",(req,res)=>{
     res.send("Running...")
   })
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server running on port 8000");
 });
 
