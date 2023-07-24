@@ -26,6 +26,9 @@ mongoose
     console.log("Error connecting to MongoDb", err);
   });
 
+  app.get("/",(req,res)=>{
+    res.send("Running...")
+  })
 app.listen(port, () => {
   console.log("Server running on port 8000");
 });
